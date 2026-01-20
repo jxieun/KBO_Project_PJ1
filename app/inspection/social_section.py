@@ -65,7 +65,11 @@ def render_social_section():
     coef_df = pd.DataFrame(results).T
 
     if not coef_df.empty:
-        plt.rc('font', family='Malgun Gothic')
+        import platform
+        if platform.system() == 'Darwin':
+            plt.rc('font', family='AppleGothic')
+        else:
+            plt.rc('font', family='Malgun Gothic')
         plt.rcParams['axes.unicode_minus'] = False
 
         for var in vars:

@@ -1,6 +1,8 @@
 # main.py (수정된 부분)
 
 import streamlit as st
+from dotenv import load_dotenv
+load_dotenv()
 from app.inspection.inspection_page import render_inspection_page  # type: ignore
 from app.inspection.correlation_section import render_correlation_section
 from app.schedule.schedule_view import render_schedule_view

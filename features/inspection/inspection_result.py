@@ -98,13 +98,14 @@ class InspectionResult:
         df_future = df[df['날짜_dt'] >= today]
 
         if df_future.empty:
-            return []
-
-        # 가장 가까운 날짜 추출
-        closest_date = df_future['날짜_dt'].min()
+            # 미래 경기가 없으면 가장 최근(마지막) 경기 날짜 사용
+            closest_date = df['날짜_dt'].max()
+        else:
+            # 가장 가까운 날짜 추출
+            closest_date = df_future['날짜_dt'].min()
 
         # 해당 날짜의 경기들만 추출
-        df_result = df_future[df_future['날짜_dt'] == closest_date]
+        df_result = df[df['날짜_dt'] == closest_date]
 
         # 딕셔너리 리스트로 변환해서 반환
         return df_result.drop(columns='날짜_dt').to_dict(orient='records')
@@ -262,6 +263,18 @@ class InspectionResult:
                     break
             if selected_team:
                 break
+        
+        # fallback: 만약 매칭되는 팀이 없으면 첫 번째 후보 선택
+        if selected_team is None and candidates:
+            selected_team = candidates[0]
+            
+        if selected_team is None:
+            print("!!! No team selected, returning dummy data !!!")
+            return {
+                "team": {"name": "알 수 없음", "stadium": "알 수 없음", "latitude": "0", "longitude": "0"},
+                "famous_restaurants": [],
+                "recommend_seat": "추천 좌석 없음"
+            }
 
         # 좌석 추천
         recommend_seat_data = self.get_recommend_seats(result_arr)
@@ -269,25 +282,9 @@ class InspectionResult:
         pprint("@@@ selected_team_SELECTED ")
         pprint(selected_team)
 
-        '''
-        Return:
-        {
-            "team": {'latitdue', 'longitude', 'name', 'stadium}
-            "famous_restaurants": [
-                {
-                    'address_name': string,
-                    'category_name': string,
-                    'place_name': string
-                }
-            ]
-        }
-        '''
-
-        
-            
         return {
             "team" : selected_team,
-            "famous_restaurants": famous_rests[selected_team["name"]],
+            "famous_restaurants": famous_rests.get(selected_team["name"], []),
             "recommend_seat": recommend_seat_data
         }
 
