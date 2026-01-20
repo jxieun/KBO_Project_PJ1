@@ -37,13 +37,15 @@ def render_schedule_view():
         future_df = df[df["날짜"] > today_short]
 
         if future_df.empty:
-            st.error("파일 내에도 예정된 경기가 없습니다.")
-            return
-
-        # 가장 가까운 경기일 선택
-        next_date = future_df.sort_values("날짜")["날짜"].iloc[0]
-        today_df = df[df["날짜"] == next_date]
-        st.info(f"가장 가까운 경기 일정: {next_date}")
+            # 미래 경기가 없으면 가장 마지막 날짜 경기를 보여줌 (2025년 데이터 대응)
+            next_date = df["날짜"].max()
+            today_df = df[df["날짜"] == next_date]
+            st.warning(f"예정된 경기 일정이 없어 가장 최근 데이터({next_date})를 표시합니다.")
+        else:
+            # 가장 가까운 경기일 선택
+            next_date = future_df.sort_values("날짜")["날짜"].iloc[0]
+            today_df = df[df["날짜"] == next_date]
+            st.info(f"가장 가까운 경기 일정: {next_date}")
 
     # ✅ UI
     grouped = today_df.groupby("날짜")
