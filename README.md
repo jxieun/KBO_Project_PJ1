@@ -79,11 +79,28 @@
 
 # 개발자 가이드 (Developer Guide)
 
-## 기술 스택
+## 💻 개발 환경 및 기술 스택 (Tech Stack & Environment)
 
-- **Language**: Python
-- **Frontend**: Streamlit
-- **Deployment**: git, pandas, requests, selenium, seaborn, python-dotenv
+### 🛠️ 개발 환경 (Environment)
+- **OS**: Windows / macOS (Cross-platform compatible)
+- **Language**: Python 3.9+
+- **IDE**: VS Code, PyCharm
+- **Version Control**: Git, GitHub
+
+### 📚 기술 스택 (Libraries & Frameworks)
+
+| 분류 | 기술 | 설명 |
+| :--- | :--- | :--- |
+| **Frontend** | **Streamlit** | 웹 애플리케이션 UI 및 인터랙션 구현 |
+| **Data Processing** | **Pandas** | 데이터 전처리 및 분석 |
+| **Machine Learning** | **Scikit-learn**, **Statsmodels** | 상관관계 분석 및 회귀 분석 모델링 |
+| **Visualization** | **PyDeck**, **Plotly**, **Matplotlib**, **Seaborn** | 데이터 시각화 및 대화형 차트 제공 |
+| **Crawling** | **Selenium**, **Requests** | KBO 경기 일정 및 데이터 크롤링 |
+| **API** | **WeatherAPI**, **Kakao Map API** | 실시간 날씨 및 장소 검색 기능 연동 |
+
+### 🚀 배포 (Deployment)
+- **Platform**: Streamlit Community Cloud
+- **CI/CD**: GitHub Actions (Automatic Deployment on Push)
 
 ---
 
