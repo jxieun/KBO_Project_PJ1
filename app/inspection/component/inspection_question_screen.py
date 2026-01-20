@@ -32,17 +32,19 @@ def questions_screen():
 
         title = question["title"]
 
-        st.subheader(title)
+        st.markdown(f"<h3 style='text-align: center; margin-bottom: 20px;'>{title}</h3>", unsafe_allow_html=True)
 
         # 선택지 버튼 렌더링
         for idx, option in enumerate(question["options"]):
-            if st.button(option["text"], key=f"q{inspection_page_idx}_{title}_{idx}"):
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                if st.button(option["text"], key=f"q{inspection_page_idx}_{title}_{idx}", use_container_width=True):
 
-                result = option["value"]
+                    result = option["value"]
 
-                st.session_state.answers.extend(result)
-                st.session_state.inspection_page_idx += 1
-                st.rerun()  # 다음 질문으로 넘어감
+                    st.session_state.answers.extend(result)
+                    st.session_state.inspection_page_idx += 1
+                    st.rerun()  # 다음 질문으로 넘어감
 
     else:
         with st.spinner("로딩 중입니다..."):
