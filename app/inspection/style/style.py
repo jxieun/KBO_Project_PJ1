@@ -144,15 +144,23 @@ def apply_inspection_styles():
         }
                 
         div.shop_list a{
-            display: inline-block;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            min-height: 60px; /* 최소 높이 확보 */
+            
             color: black;
-            padding: 14px 20px;
+            padding: 10px;
             margin: 6px 0;
             border-radius: 6px;
             border: 1px solid #6732D5;
             color: #6732D5;
             text-decoration: none;
             transition: background-color 0.2s, border-color 0.2s;    
+            text-align: center;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
         }
                 
         div.shop_list a:hover {
@@ -160,6 +168,7 @@ def apply_inspection_styles():
             transform: scale(1.02);
             cursor: pointer;
             color: black;
+            background-color: #f3e5f5; /* 연한 보라색 배경 추가 */
         }
                 
 
