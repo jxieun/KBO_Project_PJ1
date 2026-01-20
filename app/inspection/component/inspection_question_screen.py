@@ -165,8 +165,10 @@ def questions_screen():
             st.markdown(html_inspection_recommend, unsafe_allow_html=True)
 
             # 다시 시작 버튼
-            if st.button("다시 시작", key="btn-reset"):
-                st.session_state.started = False
-                st.session_state.inspection_page_idx = 0
-                st.session_state.answers = []
-                st.rerun()
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                if st.button("다시 시작", key="btn-reset", use_container_width=True):
+                    st.session_state.started = False
+                    st.session_state.inspection_page_idx = 0
+                    st.session_state.answers = []
+                    st.rerun()
