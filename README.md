@@ -104,6 +104,36 @@
 
 ---
 
+## 📦 설치 및 실행 방법 (Installation & Running Locally)
+
+### 1. 프로젝트 복제 (Clone)
+```bash
+git clone https://github.com/jxieun/KBO_Project_PJ1.git
+cd KBO_Project_PJ1
+```
+
+### 2. 라이브러리 설치 (Install Dependencies)
+```bash
+pip install -r requirements.txt
+```
+
+### 3. 환경 변수 설정 (Environment Setup)
+프로젝트 루트 경로에 `.env` 파일을 생성하고 아래 내용을 입력하세요.
+(API 키는 각 서비스 페이지에서 발급받아야 합니다.)
+
+```env
+# .env file
+WEATHER_API_KEY=your_weather_api_key
+KAKAO_API_KEY=your_kakao_api_key
+```
+
+### 4. 실행 (Run)
+```bash
+streamlit run main.py
+```
+
+---
+
 ## 주요 API 명세 (간단 요약)
 
 | 리소스           | 메서드/엔드포인트                  | 설명             |
