@@ -256,13 +256,18 @@ class InspectionResult:
 
         selected_team = None
 
+        matches = []
         for team in team_rank:
             for item in candidates:
                 if item["name"] == team:
-                    selected_team = item  # 전체 dict 저장
-                    break
-            if selected_team:
-                break
+                    matches.append(item)
+                    break 
+        
+        if matches:
+            import random
+            # 상위 랭크 팀들 중에서 랜덤하게 선택 (다양성을 위해)
+            # 매번 똑같은 팀만 나오지 않도록 함
+            selected_team = random.choice(matches)
         
         # fallback: 만약 매칭되는 팀이 없으면 첫 번째 후보 선택
         if selected_team is None and candidates:
